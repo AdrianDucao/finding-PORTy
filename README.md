@@ -1,6 +1,6 @@
 # finding-PORTy
-This is a proof of concept for educational purposes only port scanning tool.
-
+This is tool will allow you to do basic port scanning and do basic reconnaissance on a network *for educational purposes only
+ 
 ```bash
 ======[finding-PORTy v1.]====== 
 

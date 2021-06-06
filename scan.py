@@ -20,7 +20,7 @@ def socket_Scan(targetIP):
 
 
 if __name__ == '__main__':    
-    print('>==>= >finding-PORTy v1.0 \n')
+    print('>==>=> finding-PORTy v1.0 \n')
     print('[OPTIONS] \n [1] Scan all Open Ports \n [2] Scan for Live Host \n [3] TCP Scan \n [4] UDP Scan \n')
     
     action = input('Action: ')    

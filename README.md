@@ -1,4 +1,4 @@
-# finding-Goatse
+# port-scan
 This is a proof of concept for educational purposes only port scanning tool.
 
 ### Features

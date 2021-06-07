@@ -41,7 +41,16 @@ def ping_Sweep(job_q, results_q):
 
 
 if __name__ == '__main__':    
-    print('======[finding-PORTy v1.]====== \n')
+    print(""" 
+    |\    o
+    |  \    o
+|\ /    .\ o
+| |       ( ======[finding-PORTy v1.]======
+|/ \     /
+    |  /
+     |/
+                    """)
+    print('\n')
     print('===[OPTIONS]=== \n [1] Scan Open Ports \n [2] Ping Sweep Live Host (Loud) \n [3] TCP Scan (Stealth) \n')
     
     action = input('Action: ')    

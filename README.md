@@ -2,15 +2,23 @@
 This is tool will allow you to do basic port scanning and do basic reconnaissance on a network *for educational purposes only
  
 ```bash
-======[finding-PORTy v1.]====== 
+ 
+    |\    o
+    |  \    o
+|\ /    .\ o
+| |       ( ======[finding-PORTy v1.]======
+|/ \     /
+    |  /
+     |/
+                    
+
 
 ===[OPTIONS]=== 
  [1] Scan Open Ports 
  [2] Ping Sweep Live Host (Loud) 
  [3] TCP Scan (Stealth) 
 
-Action: 
-
+Action: _
 
 ```
 

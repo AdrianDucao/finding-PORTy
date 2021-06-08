@@ -6,6 +6,7 @@ import time
 import os
 import multiprocessing
 import subprocess
+import csv
 
 from datetime import datetime
 
@@ -40,6 +41,18 @@ def ping_Sweep(job_q, results_q):
             pass
 
 
+def history():
+    try:
+        with open('history.csv', 'rb') as f:
+            reader = csv.reader(f)
+    except:
+        with open('history.csv', 'wb') as csvfile:
+            filewriter = csv.writer(csvfile, delimiter=',',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            filewriter.writerow(['Action Performed', 'Date/Time', 'Data'])
+            filewriter.writerow(['pressed 3','06/09/2021','192.168.254.105 --> is Live'])
+
+
 if __name__ == '__main__':    
     print(""" 
     |\    o
@@ -51,7 +64,7 @@ if __name__ == '__main__':
      |/
                     """)
     print('\n')
-    print('===[OPTIONS]=== \n [1] Scan Open Ports \n [2] Ping Sweep Live Host (Loud) \n [3] TCP Scan (Stealth) \n')
+    print('===[OPTIONS]=== \n [1] Scan Open Ports \n [2] Ping Sweep Live Host (Loud) \n [3] TCP Scan (Stealth) \n [4] Show Activities \n [5] Remove History')
     
     action = input('Action: ')    
 
@@ -93,6 +106,9 @@ if __name__ == '__main__':
     
     elif(action == '4'):
         print('will add soon...')
+        history()
+    elif(action == '5')
+        
     
     else:
         print('incorrect option...')

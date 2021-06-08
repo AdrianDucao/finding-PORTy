@@ -1,5 +1,5 @@
 # finding-PORTy
-This is tool will allow you to do basic port scanning and do basic reconnaissance on a network *for educational purposes only
+This is tool will allow you to do basic port scanning and do basic reconnaissance on a network, for educational purposes only
  
 ```bash
  
@@ -26,6 +26,8 @@ Action: _
 1. Scan Open Ports - Allows you to check for open ports on specific host in a network
 2. Ping Sweep Live Host (Loud) - Allows you to check for connected Live Host on a network, note that this is too obvious and loud to use can be tracked by honeypots or wireshark
 3. TCP Scan (Stealth) - coming soon, will use SYN flag, SYN-ACK and ACK on packets
+4. View Activities - shows the past activities or history where you can review previous data
+5. Clear Activities - removal of history.csv file
 
 ### Installation and Usage:
 ```bash

@@ -17,8 +17,9 @@ This is tool will allow you to do basic port scanning and do basic reconnaissanc
  [1] Scan Open Ports 
  [2] Ping Sweep Live Host (Loud) 
  [3] TCP Scan (Stealth) 
-
-Action: _
+ [4] Show Activities 
+ [5] Remove History
+Action: 
 
 ```
 

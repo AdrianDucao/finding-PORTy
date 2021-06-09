@@ -15,7 +15,7 @@ def check_history():
         with open('history.csv','rb') as f:
             reader=csv.reader(f)
     except:
-         with open('history.csv','w') as csvfile:
+         with open('history.csv','a', newline='') as csvfile:
              filewriter = csv.writer(csvfile, delimiter=',', 
                                      quotechar='|', quoting=csv.QUOTE_MINIMAL)
              currentDate = datetime.now()
@@ -30,6 +30,7 @@ def show_history():
                 print(row)
     except:
         pass
+
 def write_history(action, data):
     with open('history.csv','a', newline='') as csvfile: 
         filewriter = csv.writer(csvfile, delimiter=',', 
@@ -39,22 +40,12 @@ def write_history(action, data):
         data2 = data
         filewriter.writerow([data1, data2])
 
-def socket_Scan(targetIP):
-    def write(action, data):
-        with open('history.csv','a', newline='') as csvfile:
-             filewriter = csv.writer(csvfile, delimiter=',', 
-                                     quotechar='|', quoting=csv.QUOTE_MINIMAL)
-             currentDate = datetime.now()
-             data1 = action
-             data2 = data
-             filewriter.writerow([data1, data2])
-
+def socket_Scan(targetIP, write_history):
     dt = datetime.now()
     timer = time.time()
     host = gethostbyname(targetIP)
     action = '-------------------Port Scan--------------------- \n'
-    data = 'Scanning...'
-    write(action,data)
+    write_history(action,dt)
 
     print('Scanning...')
 
@@ -66,9 +57,9 @@ def socket_Scan(targetIP):
             print('Port %d: ->[OPEN]'%(i,))
             data = 'Port %d: ->[OPEN]}'%(i,)
             soc.close()
-            write('', data)
+            write_history('', data)
     time_taken = time.time() - timer
-    write('time taken =',time_taken)
+    write_history('time taken =',time_taken)
     print('time taken = ', time_taken)
 
 def ping_Sweep(job_q, results_q):
@@ -104,7 +95,7 @@ if __name__ == '__main__':
     if(action == '1'):
         targetIP = input('===[Scan Open Ports]=== \n Enter IP: ')
         check_history()
-        socket_Scan(targetIP)
+        socket_Scan(targetIP, write_history)
     
     elif(action == '2'):
         check_history()

@@ -41,3 +41,125 @@ $ ./scan.py
 ```
 and your off to the races
 
+#### Scan Open Ports
+here's an example on how port scanning is used
+```bash
+$ ./scan.py
+ 
+    |\    o
+    |  \    o
+|\ /    .\ o
+| |       ( ======[finding-PORTy v1.]======
+|/ \     /
+    |  /
+     |/
+                    
+
+
+===[OPTIONS]=== 
+ [1] Scan Open Ports 
+ [2] Ping Sweep Live Host (Loud) 
+ [3] TCP Scan (Stealth) 
+ [4] Show Activities 
+ [5] Remove History
+Action: 1 
+===[Scan Open Ports]=== 
+ Enter IP: 192.168.254.135
+Scanning...
+Port 80: ->[OPEN]
+Port 1624: ->[OPEN]
+Port 5355: ->[OPEN]
+Port 32400: ->[OPEN]
+Port 32469: ->[OPEN]
+Port 51204: ->[OPEN]
+Port 60278: ->[OPEN]
+time taken =  3.6720473766326904
+
+```
+
+#### Ping Sweep Live Host
+here's the example and how it would looked like, remember to use the gateway or router's IP and not the targets IP
+```bash
+$ ./scan.py
+ 
+    |\    o
+    |  \    o
+|\ /    .\ o
+| |       ( ======[finding-PORTy v1.]======
+|/ \     /
+    |  /
+     |/
+                    
+
+
+===[OPTIONS]=== 
+ [1] Scan Open Ports 
+ [2] Ping Sweep Live Host (Loud) 
+ [3] TCP Scan (Stealth) 
+ [4] Show Activities 
+ [5] Remove History
+Action: 2
+===[Ping Sweep Live Host]=== 
+ Enter Range(1 to ?): 255
+
+ Enter Network IP: 192.168.254.254
+192.168.254.105 ---> we got a live one!
+192.168.254.135 ---> we got a live one!
+192.168.254.103 ---> we got a live one!
+
+```
+
+#### Show Activities
+this will show the history of your activities for later usage, note you can remove this data whenever you don't need it.
+```bash
+$ ./scan.py
+ 
+    |\    o
+    |  \    o
+|\ /    .\ o
+| |       ( ======[finding-PORTy v1.]======
+|/ \     /
+    |  /
+     |/
+                    
+
+
+===[OPTIONS]=== 
+ [1] Scan Open Ports 
+ [2] Ping Sweep Live Host (Loud) 
+ [3] TCP Scan (Stealth) 
+ [4] Show Activities 
+ [5] Remove History
+Action: 4
+['2021-06-09 11:20:04.686995']
+['|-------------------Ping Sweep Live Host--------------------- ']
+['|', 'Scanning']
+['2021-06-09 11:20:22.333781', "|('192.168.254.105'", " '---> we got a live one!')|"]
+['2021-06-09 11:20:22.334037', "|('192.168.254.135'", " '---> we got a live one!')|"]
+['|-------------------Port Scan--------------------- ']
+['|', 'Scanning...']
+['', 'Port 80: ->[OPEN]}']
+['', 'Port 1624: ->[OPEN]}']
+['', 'Port 5355: ->[OPEN]}']
+['', 'Port 32400: ->[OPEN]}']
+['', 'Port 32469: ->[OPEN]}']
+['', 'Port 42848: ->[OPEN]}']
+['', 'Port 51618: ->[OPEN]}']
+['time taken =', '3.6771161556243896']
+['|-------------------Port Scan--------------------- ']
+['|', 'Scanning...']
+['', 'Port 80: ->[OPEN]}']
+['', 'Port 1624: ->[OPEN]}']
+['', 'Port 5355: ->[OPEN]}']
+['', 'Port 32400: ->[OPEN]}']
+['', 'Port 32469: ->[OPEN]}']
+['', 'Port 51204: ->[OPEN]}']
+['', 'Port 60278: ->[OPEN]}']
+['time taken =', '3.6720473766326904']
+['|-------------------Ping Sweep Live Host--------------------- ']
+['|', 'Scanning']
+['2021-06-09 11:26:04.192099', "|('192.168.254.105'", " '---> we got a live one!')|"]
+['2021-06-09 11:26:04.192555', "|('192.168.254.135'", " '---> we got a live one!')|"]
+['2021-06-09 11:26:04.192754', "|('192.168.254.103'", " '---> we got a live one!')|"]
+
+```

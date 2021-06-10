@@ -19,6 +19,7 @@ This is tool will allow you to do basic port scanning and do basic reconnaissanc
  [3] TCP Scan (Stealth) 
  [4] Show Activities 
  [5] Remove History
+ [0] Exit
 Action: 
 
 ```

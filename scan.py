@@ -12,10 +12,10 @@ from datetime import datetime
 
 def check_history():
     try:
-        with open('history.csv','rb') as f:
+        with open('session.csv','rb') as f:
             reader=csv.reader(f)
     except:
-         with open('history.csv','a', newline='') as csvfile:
+         with open('session.csv','a', newline='') as csvfile:
              filewriter = csv.writer(csvfile, delimiter=',', 
                                      quotechar='|', quoting=csv.QUOTE_MINIMAL)
              currentDate = datetime.now()
@@ -23,7 +23,7 @@ def check_history():
 
 def show_history():
     try:
-        with open('history.csv') as f:
+        with open('session.csv') as f:
             reader = csv.reader(f)
 
             for row in reader:
@@ -32,7 +32,7 @@ def show_history():
         pass
 
 def write_history(action, data):
-    with open('history.csv','a', newline='') as csvfile: 
+    with open('session.csv','a', newline='') as csvfile: 
         filewriter = csv.writer(csvfile, delimiter=',', 
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
         currentDate = datetime.now()

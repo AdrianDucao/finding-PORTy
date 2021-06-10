@@ -76,8 +76,8 @@ def ping_Sweep(job_q, results_q):
         except:
             pass
 
-
-if __name__ == '__main__':    
+def menu():
+    
     print(""" 
     |\    o
     |  \    o
@@ -88,58 +88,62 @@ if __name__ == '__main__':
      |/
                     """)
     print('\n')
-    print('===[OPTIONS]=== \n [1] Scan Open Ports \n [2] Ping Sweep Live Host (Loud) \n [3] TCP Scan (Stealth) \n [4] Show Activities \n [5] Remove History')
+    print('===[OPTIONS]=== \n [1] Scan Open Ports \n [2] Ping Sweep Live Host (Loud) \n [3] TCP Scan (Stealth) \n [4] Show Activities \n [5] Remove History \n [0] Exit')
+    while(True):
+        action = input('Action: ')    
+
+        if(action == '1'):
+            targetIP = input('===[Scan Open Ports]=== \n Enter IP: ')
+            check_history()
+            socket_Scan(targetIP, write_history)
     
-    action = input('Action: ')    
+        elif(action == '2'):
+            check_history()
+            action = '-------------------Ping Sweep Live Host--------------------- \n'
+            data = 'Scanning'
+            write_history(action, data)
 
-    if(action == '1'):
-        targetIP = input('===[Scan Open Ports]=== \n Enter IP: ')
-        check_history()
-        socket_Scan(targetIP, write_history)
-    
-    elif(action == '2'):
-        check_history()
-        action = '-------------------Ping Sweep Live Host--------------------- \n'
-        data = 'Scanning'
-        write_history(action, data)
+            size = int(input('===[Ping Sweep Live Host]=== \n Enter Range(1 to ?): '))
+            targetNetwork = input('\n Enter Network IP: ')
+            splitIP = targetNetwork.split('.')
+            x = '.'
 
-        size = int(input('===[Ping Sweep Live Host]=== \n Enter Range(1 to ?): '))
-        targetNetwork = input('\n Enter Network IP: ')
-        splitIP = targetNetwork.split('.')
-        x = '.'
+            reconIP = size + 1
 
-        reconIP = size + 1
-
-        jobs = multiprocessing.Queue()
-        results = multiprocessing.Queue()
-        pool = [multiprocessing.Process(target=ping_Sweep, args=(jobs, results))
+            jobs = multiprocessing.Queue()
+            results = multiprocessing.Queue()
+            pool = [multiprocessing.Process(target=ping_Sweep, args=(jobs, results))
                 for i in range(size) ]
 
-        for p in pool:
-            p.start()
-        for i in range(1,size):
-            fnetwork = splitIP[0] + x + splitIP[1] + x + splitIP[2] + x + str(i) #tricky hack on splitting ip
-            jobs.put(fnetwork)
-        for p in pool:
-            jobs.put(None)
-        for p in pool:
-            p.join()
+            for p in pool:
+                p.start()
+            for i in range(1,size):
+                fnetwork = splitIP[0] + x + splitIP[1] + x + splitIP[2] + x + str(i) #tricky hack on splitting ip
+                jobs.put(fnetwork)
+            for p in pool:
+                jobs.put(None)
+            for p in pool:
+                p.join()
 
-        while not results.empty():
-            liveIP = results.get()
-            data = liveIP,'---> we got a live one!'
-            dateTime = datetime.now()
-            write_history(dateTime, data)
-            print(liveIP, '---> we got a live one!')
+            while not results.empty():
+                liveIP = results.get()
+                data = liveIP,'---> we got a live one!'
+                dateTime = datetime.now()
+                write_history(dateTime, data)
+                print(liveIP, '---> we got a live one!')
             
-
-    elif(action == '3'):
-        print('will add soon...')
+        elif(action == '3'):
+            print('will add soon...')
     
-    elif(action == '4'):
-        show_history()
+        elif(action == '4'):
+            show_history()
 
-    elif(action == '5'):
-        print('will add soon...')
-    else:
-        print('incorrect option...')
+        elif(action == '5'):
+            print('will add soon...')
+        elif(action == '0'):
+            exit(0)
+        else:
+            print('incorrect option...')
+
+if __name__ == '__main__':   
+    menu() 

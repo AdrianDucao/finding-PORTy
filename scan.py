@@ -7,7 +7,7 @@ import os
 import multiprocessing
 import subprocess
 import csv
-
+from scapy.all import * #python3 is not supported
 from datetime import datetime
 
 def check_history():
@@ -76,6 +76,22 @@ def ping_Sweep(job_q, results_q):
         except:
             pass
 
+def TCP_Scan(target_IP):
+    # Generate Port Number
+    srcport = 6343
+
+    # Send SYNC and receive RST-ACK or SYN-ACK
+    SYNACKpkt = sr1(IP(dst=target_IP) / TCP(sport=srcport, dport=port, flags="S"))
+
+    # Extract flags of received packet
+    pktflags = SYNACKpkt.getlayer(TCP).flags
+    time.sleep(5) 
+    if pktflags == SYNACK:
+        print(dport, "OPEN")
+    else:
+        print('no open port')
+            
+
 def menu():
     
     print(""" 
@@ -133,8 +149,10 @@ def menu():
                 print(liveIP, '---> we got a live one!')
             
         elif(action == '3'):
-            print('will add soon...')
-    
+            print('===TCP Stealth Scan===')
+            target_IP = input('Enter IP: ')
+            TCP_Scan(target_IP)
+
         elif(action == '4'):
             show_history()
 
